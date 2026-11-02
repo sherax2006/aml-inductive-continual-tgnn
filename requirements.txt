@@ -1,0 +1,32 @@
+# Core
+torch>=2.2
+torch_geometric>=2.5
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+scipy>=1.10          # aml_tgnn/racla/drift.py -- scipy.stats.ks_2samp (RACLA's drift detector);
+                      # analysis_scripts/*significance* -- scipy.stats.ttest_rel / ttest_ind
+
+# Figure generation only (figure_scripts/) -- not needed for training/inference
+matplotlib>=3.7
+
+# -----------------------------------------------------------------------------
+# Notes
+#
+# - torch: install the build matching your hardware BEFORE this file, following
+#   https://pytorch.org/get-started/locally/ (CPU-only works fine; all code
+#   auto-detects CUDA if present and falls back to CPU otherwise -- see
+#   aml_tgnn/config.py's `_default_device()`). The reported results were
+#   produced on CPU-only hardware (no GPU access at training time), so a GPU
+#   is not required to reproduce them, only to reproduce them faster.
+#
+# - torch_geometric: install per https://pytorch-geometric.readthedocs.io/en/
+#   latest/install/installation.html for your torch/CUDA combination. The
+#   optional accelerator packages (pyg-lib, torch-scatter, torch-sparse,
+#   torch-cluster, torch-spline-conv) are NOT required -- this codebase uses
+#   PyG's pure-Python fallbacks throughout (NeighborLoader etc.), and was
+#   developed/run without them.
+#
+# Tested with: torch 2.12.1 (CPU build), torch_geometric 2.7.0, numpy 2.2.6,
+# pandas 2.3.1, scikit-learn 1.7.2, scipy 1.15.3, matplotlib 3.10.9,
+# Python 3.10.12.
